@@ -2,9 +2,12 @@ import numpy as np
 import pandas
 import scipy
 
+
+
 def z_to_a(z: np.ndarray) -> np.ndarray:
     """Convert redshift to scale factor"""
     return 1/(1+z)
+
 
 def a_to_z(a: np.ndarray) -> np.ndarray:
     """Convert scale factor to redshift"""
@@ -12,6 +15,7 @@ def a_to_z(a: np.ndarray) -> np.ndarray:
 
 
 def generalized_sin(x: np.ndarray, K: float=0) -> np.ndarray:
+    """Generalized sin / sinh function"""
     scale_K = np.sqrt(np.fabs(K))
     if K < 0:
         return np.sin(scale_K*x)/scale_K
@@ -21,6 +25,7 @@ def generalized_sin(x: np.ndarray, K: float=0) -> np.ndarray:
 
 
 def generalized_cos(x: np.ndarray, K: float=0) -> np.ndarray:
+    """Generalized cos / cosh function"""
     scale_K = np.sqrt(np.fabs(K))
     if K < 0:
         return np.cos(scale_K*x)/scale_K
@@ -30,6 +35,7 @@ def generalized_cos(x: np.ndarray, K: float=0) -> np.ndarray:
 
 
 def generalized_cot(x: np.ndarray, K: float=0) -> np.ndarray:
+    """Generalized cot / coth function"""    
     scale_K = np.sqrt(np.fabs(K))
     if K < 0:
         return scale_K/np.tan(scale_K*x)
@@ -39,6 +45,7 @@ def generalized_cot(x: np.ndarray, K: float=0) -> np.ndarray:
 
 
 def chi_ratio(cosmo, z_d: np.ndarray, z_s: np.ndarray) -> np.ndarray:
+    """Ratio of comoving radial distance between source and deflector"""
     a_d = z_to_a(z_d)
     a_s = z_to_a(z_s)
     chi_d = cosmo.comoving_radial_distance(a_d.ravel()).reshape(a_d.shape)
