@@ -25,6 +25,7 @@ dependencies = [
     "matplotlib",
     "scipy",
     "pyccl",
+    "astropy",
 ]
 
 
@@ -36,6 +37,15 @@ dev = [
     "pre-commit", # Used to run checks before finalizing a git commit
     "pylint", # Used for static linting of files
     "jupyter", # Used to render simple test notebook
+]
+docs = [
+    "nbsphinx",
+    "sphinx", # Used to automatically generate documentation
+    "sphinx-autodoc-typehints", 
+    "sphinx_rtd_theme", # Used to render documentation
+    "sphinx-autoapi", # Used to automatically generate api documentation    
+    "sphinx-tabs", # Used to create tabbed content within the docs
+    "sphinx-click", # Used for command line interface docs
 ]
 
 [project.scripts]
@@ -63,7 +73,6 @@ addopts = [
 [tool.pylint]
 disable = [
     "abstract-method",
-    "invalid-name",
     "too-many-statements",
     "too-many-arguments",
     "too-many-instance-attributes",
@@ -74,6 +83,14 @@ disable = [
     "use-dict-literal",
     "broad-exception-caught",
 ]
+
+function-naming-style = "snake_case"
+method-naming-style = "snake_case"
+variable-naming-style = "snake_case"
+argument-naming-style = "snake_case"
+class-naming-style = "PascalCase"
+attr-naming-style = "snake_case"
+
 max-line-length = 110
 max-locals = 50
 max-branches = 25
@@ -90,6 +107,11 @@ strict_equality = true
 warn_redundant_casts = true
 warn_unreachable = true
 warn_unused_ignores = true
+
+[tool.pylint.MASTER]
+ignore-paths = [
+    "src/cdfvi/_version.py",
+]
 
 
 [tool.coverage.run]
